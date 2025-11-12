@@ -11,7 +11,7 @@ function StudentList({ students, TrainingDays, onToggleAttendance }) {
         <tr>
     <th>الاسم</th>
           <th>اسم الأب</th>
-          <th>الوكيل</th>
+          <th>الكنية</th>
 
           {numberDays.map((day) => (
             <th key={day}>{day}</th>
