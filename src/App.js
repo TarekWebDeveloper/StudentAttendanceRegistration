@@ -5,12 +5,13 @@ import Dashboard from "./pages/Dashboard";
 import { v4 as uuidv4 } from "uuid";
 
 function App() {
-  // حالة الطلاب
-  const [students, setStudents] = useState([]);
-  // أيام الدورة
-  const [TrainingDays, setTrainingDays] = useState([]);
 
-  // جلب الأيام من قاعدة البيانات عند أول تحميل
+  // Student status
+  const [students, setStudents] = useState([]);
+  // Course days
+  const [TrainingDays, setTrainingDays] = useState([]);
+  
+// Fetch the days from the database on first load
   useEffect(() => {
     fetch("http://localhost/driving-school/api/get_course_days.php")
       .then((res) => res.json())
@@ -19,16 +20,16 @@ function App() {
       })
       .catch((err) => console.error("خطأ عند جلب الأيام:", err));
   }, []);
-
-  // جلب الطلاب عند أول تحميل
+  
+// Bring students on the first load
   useEffect(() => {
     fetch("http://localhost/driving-school/api/get_students.php")
       .then((res) => res.json())
       .then((data) => setStudents(data))
       .catch((err) => console.error("خطأ في جلب الطلاب:", err));
   }, []);
-
-  // إعداد الدورة: توليد الأيام من التاريخ وحفظها في قاعدة البيانات
+  
+// Course setup: Generate days from the date and save them in the database
   const handleSetup = (TrainingDaysArray) => {
     setTrainingDays(TrainingDaysArray);
     setStudents([]);
@@ -45,7 +46,7 @@ function App() {
       .catch((err) => console.error("خطأ في الاتصال بالخادم:", err));
   };
 
-  // حذف الدورة والطلاب
+// Delete course and students
   const handleDeleteCourse = async () => {
     if (!window.confirm("هل أنت متأكد من حذف الدورة والطلاب؟")) return;
 
@@ -67,8 +68,7 @@ function App() {
       alert("خطأ في الاتصال بالخادم");
     }
   };
-
-  // إضافة طالب جديد
+// Add a new student
   const handleAddStudent = (student) => {
     const newStudent = { ...student, id: uuidv4(), attendance: [] };
     setStudents([...students, newStudent]);
@@ -86,11 +86,9 @@ function App() {
   };
 
 
+// Change student attendance status
 
-
-  // تغيير حالة الحضور للطلاب
   const handleToggleAttendance = (studentId, day) => {
-    // البحث عن الطالب باستخدام studentId
     const student = students.find(s => s.id === studentId);
 
     if (!student) {
@@ -98,10 +96,8 @@ function App() {
       return;
     }
 
-    // تحديد حالة الحضور
     const isPresent = student.attendance.includes(day) ? 0 : 1;
 
-    // تحديث الحضور في الواجهة الأمامية مباشرة
     setStudents(prev =>
       prev.map(s =>
         s.id === studentId
@@ -114,16 +110,15 @@ function App() {
           : s
       )
     );
-console.log("إرسال البيانات:", { student_id: studentId, day: day, present: isPresent });
 
-    // إرسال البيانات إلى الخادم
     fetch("http://localhost/driving-school/api/toggle_attendance.php", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        student_id: studentId, // استخدام ID الطالب الموجود في React
-        day: day, // اليوم
-        present: isPresent, // الحضور (0 للغياب، 1 للحضور)
+        student_id: studentId, 
+        day: day, 
+        //Attendance (0 for absence, 1 for attendance)
+        present: isPresent, 
       }),
     })
       .then(res => res.json())
@@ -149,11 +144,9 @@ console.log("إرسال البيانات:", { student_id: studentId, day: day, p
   return (
     <div>
       <Header />
-      {/* إذا لم يتم تحديد الأيام بعد، نعرض CourseSetup */}
       {TrainingDays.length === 0 ? (
         <CourseSetup onSetup={handleSetup} />
       ) : (
-        // بعد تحديد الأيام، نعرض Dashboard
         <Dashboard
           students={students}
           TrainingDays={TrainingDays}
@@ -166,7 +159,7 @@ console.log("إرسال البيانات:", { student_id: studentId, day: day, p
   );
 }
 
-export default App; // تأكد من أن هذه هي نهاية الكود وتصدير الكومبوننت
+export default App; 
   
   
   
