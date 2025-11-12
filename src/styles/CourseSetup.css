@@ -1,0 +1,64 @@
+.course-setup {
+  background: #f7f9fc;
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  direction: rtl;
+  text-align: right;
+  font-family: "Cairo", sans-serif;
+  background-color: rgb(7, 30, 34);
+}
+
+.Myheder {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+    color: rgb(235, 225, 225);
+    font-size: 60px;
+    background-color: rgb(7, 7, 117);
+    margin-top:-4px ;
+    height: 100px;
+
+}
+
+.course-setup form {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+
+.course-setup input[type="date"] {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 14px;
+  width: 380px;
+  margin-top: 20px;
+  margin-bottom:20px ;
+}
+
+.course-setup button {
+    background-color: rgb(8, 8, 22);
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+  margin-right: 40%;
+  font-size: 19px;
+}
+
+.course-setup button:hover {
+  background-color: #25700d;
+}
+form label{
+color: white;
+font-size: 25px;
+margin-top: 20px;
+
+}

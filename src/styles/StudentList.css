@@ -1,0 +1,77 @@
+h2{
+
+    text-align: center;
+    background-color: red;
+    color: white;
+    height: 50px;
+}
+form input{
+
+
+height: 22px;
+margin-left: 12px;
+width: 230px;
+font-size: large;
+
+}
+form{
+
+text-align: center;
+font-size:12px;
+direction: rtl;
+
+
+}
+.sub{
+
+width: 100px;
+font-size: large;
+height: 32px;
+width: 100px;
+font-size: large;
+margin-top: 4px;
+margin-right:6px ;
+margin: 12px;
+background-color: green;
+color: aliceblue;
+}
+
+
+.subD{
+
+width: 100px;
+font-size: large;
+height: 32px;
+width: 100px;
+font-size: large;
+margin-top: 4px;
+margin-right:6px ;
+margin: 12px;
+background-color: red;
+color: aliceblue;
+}
+
+
+
+.courDelete{
+    margin: auto;
+    font-size: 19px;
+    background-color: rgb(202, 22, 22);
+    margin-left: 45%;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    padding: 6px;
+    border-radius:10%;
+
+
+}
+
+
+table{
+
+direction: rtl;
+padding: 12px;
+
+
+
+}
