@@ -17,8 +17,7 @@ function CourseSetup({ onSetup }) {
     if (start > end) {
       return alert("تاريخ البداية لا يمكن أن يكون بعد تاريخ النهاية!");
     }
-
-    // توليد الأيام بين التاريخين
+// Generating the days between the two dates
     const TrainingDays = [];
     const current = new Date(start);
     while (current <= end) {
