@@ -9,11 +9,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     http_response_code(200);
     exit;
 }
+// Delete students associated with the course
 
-// حذف الطلاب المرتبطين بالدورة
 $conn->query("DELETE FROM Student");
 
-// حذف أيام الدورة
+// Delete cycle days
 $conn->query("DELETE FROM course_days");
 
 echo json_encode(["status" => "success"]);
