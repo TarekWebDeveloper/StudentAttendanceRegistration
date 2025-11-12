@@ -5,7 +5,7 @@ header("Content-Type: application/json; charset=UTF-8");
 
 require 'db.php';
 
-// جلب جميع الطلاب
+// Bring all the students
 $sql = "SELECT id, name, father, agent FROM student";
 $result = $conn->query($sql);
 
@@ -14,8 +14,8 @@ $students = [];
 if ($result) {
     while ($row = $result->fetch_assoc()) {
         $student_id = $row['id'];
-
-        // جلب أيام الحضور الخاصة بهذا الطالب
+        
+// Retrieve this student's attendance days
         $attendance_query = "SELECT day FROM attendance WHERE student_id = $student_id AND present = 1";
         $attendance_result = $conn->query($attendance_query);
 
@@ -25,8 +25,7 @@ if ($result) {
                 $attendance_days[] = $att['day'];
             }
         }
-
-        // إضافة الأيام إلى بيانات الطالب
+// Add days to student data
         $row['attendance'] = $attendance_days;
         $students[] = $row;
     }
